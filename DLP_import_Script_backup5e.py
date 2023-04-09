@@ -1,6 +1,40 @@
+## Version 2
+## C:\Users\aa300j\Downloads\DLP_import_Script_backup5e.py   -- working [without bulk, with 08,03]
+###################################################################
 
-## Version 1 (Production)
-## C:\Users\aa300j\Downloads\DLP_import_Script_backup5f.py   -- working [without bulk, with 08,03]   run it from streamlit
+#####################################################################################################################
+#### input files
+version_no=2.6
+#####################################################################################################################
+
+###LSA4E  # for 1st def
+Candidate_DLP_files_folder =r'C:\Users\aa300j\Downloads\PEP\Connect_it_files\bingo_3332\Cand'
+Production_DLP_files_folder=r'C:\Users\aa300j\Downloads\PEP\Connect_it_files\bingo_3332\Prod'
+
+
+
+output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully=r'C:\Users\aa300j\Desktop\JCV2A_21.csv'  ## Do not change these
+
+import os
+import depend_DLP_import_script
+
+print('Candidate folder ',Candidate_DLP_files_folder,' # of files in ',len(os.listdir(Candidate_DLP_files_folder)))
+print('Production folder ',Production_DLP_files_folder,' # of files in ',len(os.listdir(Candidate_DLP_files_folder)))
+print('\n\n')
+
+
+## Do not change these
+g3=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4'      ## Do not change these
+g3b=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4\bulk' 
+# Candidate
+g4=r'C:\Users\aa300j\Downloads\Production_DLP_files_x5'     ## Do not change these 
+# Production
+bulk_folder_path=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4\bulk'   ## Do not change these
+#### output files
+g5='p'
+##g5=r'C:\Users\aa300j\Downloads\Delta_Cand_vs_Product_[to_go_to_DLP_after_bulk_change]_x6'   # Delta DLPs to be uploaded after running bulk upload.
+
+g3a=''
 
 def Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully,g3):
     
@@ -20,7 +54,6 @@ def Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_load
     from openpyxl.utils import get_column_letter
     from openpyxl.styles import Alignment
     import shutil
-    import streamlit as st
 
 
     pd.set_option('display.max_rows', None)
@@ -81,9 +114,6 @@ def Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_load
     print(gg)
 
 
-    
-
-
     print('\n')
     print('======= bulk folder path / Files === >> [to be loaded in DLP - (without version nos)] << =====', len(gg),' ============ ','\n\n')
     print('same as above')
@@ -142,8 +172,6 @@ def Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_load
                 if k==2:
                     t1.append(dt['Name'].loc[x])
                     t2.append(dt['Version'].loc[x])
-##                    st.write('Inputs!* :sunglasses:')
-                    
                               
                     break
 
@@ -152,8 +180,6 @@ def Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_load
 ##    print(dt)
 
 
-    c=st.container()
-    
     
     print('\n')
 
@@ -165,45 +191,19 @@ def Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_load
 
 
 ##    sys.exit()
-
-    import streamlit.components.v1 as components  # Import Streamlit
-
-    # Render the h1 block, contained in a frame of size 200x200.
-##    components.html("<html><body>backgroundColor="#f0f0f5";<h1>Hello, World</h1>  </html>", width=200, height=200)
-##    st.markdown(f"""<style>.stApp {{background-image: url("https://cdn.pixabay.com/photo/2019/04/24/11/27/flowers-4151900_960_720.jpg");background-attachment: fixed;background-size: cover}}</style>""",unsafe_allow_html=True)           
-
-##    st.markdown(f"""<style>.stApp {{background-image: url("https://cdn.pixabay.com/photo/2019/04/24/11/27/flowers-4151900_960_720.jpg");background-attachment: fixed;background-size: cover}}</style>""",unsafe_allow_html=True)           
-##    st.markdown(f"""<style>.stApp {{backgroundColor = '#00325B}}</style>""",unsafe_allow_html=True)
-    st.markdown("""<style>.reportview-container {background: url("https://images.app.goo.gl/LFCobouKtT7oZ7Qv7")}</style>""",unsafe_allow_html=True)
-    
     k=1
-    print('In bulk [delta b/w [Candidate vs Producion]','   ',len(gg),'   ',len(set(gg)))
-
-    x33='In bulk'
-##    st.markdown(f'<h3 style="color:#333dff;font-size:24px;">{x33}</h3>', unsafe_allow_html=True)
-
-    st.markdown(f'<p style="color:#333dff; font-size: 36px;">{x33}</h3>', unsafe_allow_html=True)
-        
-        
-
-
+    print('In bulk','   ',len(gg),'   ',len(set(gg)))
+   
     for x in (gg):
         print(k,'   ',x)
-        st.markdown(f'<p small style="color:#333dff;font-size:10px;margin:0;padding:0;line-height:0px;">{k,x}</small></p>', unsafe_allow_html=True)
         k=k+1
 
     print('\n\n\n')
     k=1
     print('in html/DLP server','   ',len(p),'     ',len(set(p)))
-
-    x34='in html/DLP server'
-    st.markdown(f'<h3 style="color:#333dff;font-size:24px;">{x34}</h3>', unsafe_allow_html=True)
-
-    
     p2=p.sort()
     for x in (p):
         print(k,'   ',x)
-        st.markdown(f'<p small style="color:#333dff;font-size:10px;margin:0;padding:0;line-height:0px;">{k,x}</small></p>', unsafe_allow_html=True)
         k=k+1
 
 
@@ -416,7 +416,6 @@ def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_fol
     import subprocess
     import shutil
     import fnmatch
-    import streamlit as st
 
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
@@ -467,7 +466,6 @@ def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_fol
         os.mkdir(r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4\bulk')
 
     g3=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4'
-
 
 
     
@@ -546,9 +544,6 @@ def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_fol
 ##    print('\n\n\n')
     print(path1,'  path1')
     print(path2,'  path2')
-    
-
-    
     print('\n\n')
 ##    print(Production_DLP_files_folder)
 ##    print(g4)
@@ -816,11 +811,7 @@ def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_fol
     print('# of DLP files to be uploaded to bulk',(os.listdir(bbulk)),'        ',bbulk,'  code 214')
     print('\n')
     print('Bulk too -----')
-##    st.text('=================')
-##    st.write('g3 --> ',g3)
-##    st.write('bbulk ---> ',bbulk)
-##    for x in prodx:
-##        st.text(prodx)
+    
 #######################
     path = os.path.abspath(__file__)
     dir_path = (path)
@@ -830,7 +821,6 @@ def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_fol
     print(pp)
     print('******************** 334')
     print('\n')
-
 ################ 
 
     depend_DLP_import_script.change_filenames_for_bulk_import(version_no,g3)
@@ -845,79 +835,56 @@ def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_fol
 ###########################################################################################################################################################################
 
 
-def run_step1(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3b):
+def run_step1(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3a):
     ######### Start of Step 1 #######################################################################
 
     import os
+    Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3b)
+    print('\n')
+    print('==============   Summary =====================')
+    print('\n')
+    print('<----------------> def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3b)',' <------------->')
+    print('--- input files:')
+    print('Input Canidate folder : ',Candidate_DLP_files_folder,'    ',len(os.listdir(Candidate_DLP_files_folder)),' files','  ',os.listdir(Candidate_DLP_files_folder)[-1])
+    print('Input Production folder : ',Production_DLP_files_folder,'    ',len(os.listdir(Production_DLP_files_folder)),' files','  ',os.listdir(Production_DLP_files_folder)[-1])
+    print('\n\n')
+    print(' --- output files [to go into DLP] ------ > ')
+    print(' Delta Diff files that should be difference between Prod vs candidate are located in : code 332',)
+    print('\n')
+    print(' =======================   ',g3,' ==========================  ')
+    print('\n')
+    print(' # of files :',len(os.listdir(g3))-1,'  files afer removing duplicates b/w production and candidate and removed vlanchar and zones')
+    ##print(os.listdir(g3),' 999992222')
+    ##print(os.listdir(g3)[-2])
+    print(os.listdir(g3))
+    print('\n\n\n')
 
-    st.write('Inputs!* :sunglasses:')
-    st.markdown(f'<p small style="color:#333dff;font-size:10px;margin:0;padding:0;line-height:0px;">{Candidate_DLP_files_folder,len(os.listdir(Candidate_DLP_files_folder))}</small>', unsafe_allow_html=True)
-    st.markdown(f'<p small style="color:#333dff;font-size:10px;margin:0;padding:0;line-height:0px;">{Production_DLP_files_folder,len(os.listdir(Production_DLP_files_folder))}</small>', unsafe_allow_html=True)
 
-##    st.write('Candidate folder = ', Candidate_DLP_files_folder)
-##    st.write('Production folder = ', Production_DLP_files_folder)
-    st.write(":heavy_minus_sign:" * 34) # horizontal separator line.
-
-    st.write('Temporary!* :sunglasses:')
-    st.markdown(f'<p small style="color:#333dff;font-size:10px;margin:0;padding:0;line-height:0px;">{g3,len(os.listdir(g3))}</small>', unsafe_allow_html=True)
-    st.markdown(f'<p small style="color:#333dff;font-size:10px;margin:0;padding:0;line-height:0px;">{g4,len(os.listdir(g4))}</small>', unsafe_allow_html=True)
-    st.write(":heavy_minus_sign:" * 34) # horizontal separator line.
-    hh='List of files to be imported to bulk-DLP'
-    with st.container():
-            
-        st.markdown(f'<h3 style="color:#bb33ff;font-size:14px;">{hh}</h3>', unsafe_allow_html=True)
-    ##    st.markdown(f'<h3 style="color:#bb33ff;font-size:14px;">{g3b}</h3>', unsafe_allow_html=True)
-
-
+    z5=['vlanCharacteristicsInstanceProdRegion','ProdZone']
+    for x in (g3):
         
+    ##        if 'vlanCharacteristicsInstanceProdRegion' in x or 'ProdZone' in x:
+    ##            print(x)
+        k=0
+        if str(z5) in str(x):
+            print(x)
+            k=k+1
+
+    if k==0:
+        print('None of 3 files found -----> ',z5,'   in ',g3)
+
+
+
+    Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3a)    
+    ##        
+    ####################################################################################################### End of step 1
+    ##    tt=str('copy')+str(' ')+str(g3)+str('\\')+str(x) + str(' ')+str(g4)
+    ##    print(tt)
+    ##    p = os.popen(tt).read()
+    ##    print(p)
         
-        Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3b)
-        print('\n')
-        print('==============   Summary =====================')
-        print('\n')
-        print('<----------------> def Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3b)',' <------------->')
-        print('--- input files:')
-        print('Input Canidate folder : ',Candidate_DLP_files_folder,'    ',len(os.listdir(Candidate_DLP_files_folder)),' files','  ',os.listdir(Candidate_DLP_files_folder)[-1])
-        print('Input Production folder : ',Production_DLP_files_folder,'    ',len(os.listdir(Production_DLP_files_folder)),' files','  ',os.listdir(Production_DLP_files_folder)[-1])
-        print('\n\n')
-        print(' --- output files [to go into DLP] ------ > ')
-        print(' Delta Diff files that should be difference between Prod vs candidate are located in : code 332',)
-        print('\n')
-        print(' =======================   ',g3,' ==========================  ')
-        print('\n')
-        print(' # of files :',len(os.listdir(g3))-1,'  files afer removing duplicates b/w production and candidate and removed vlanchar and zones')
-        ##print(os.listdir(g3),' 999992222')
-        ##print(os.listdir(g3)[-2])
-        print(os.listdir(g3))
-        print('\n\n\n')
-
-
-        z5=['vlanCharacteristicsInstanceProdRegion','ProdZone']
-        for x in (g3):
-            
-        ##        if 'vlanCharacteristicsInstanceProdRegion' in x or 'ProdZone' in x:
-        ##            print(x)
-            k=0
-            if str(z5) in str(x):
-                print(x)
-                k=k+1
-
-        if k==0:
-            print('None of 3 files found -----> ',z5,'   in ',g3)
-
-
-
-    ##    Step1_compare_Production_Candidate__delete_same_ones(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3a)    
-        ##        
-        ####################################################################################################### End of step 1
-        ##    tt=str('copy')+str(' ')+str(g3)+str('\\')+str(x) + str(' ')+str(g4)
-        ##    print(tt)
-        ##    p = os.popen(tt).read()
-        ##    print(p)
-            
 
 def run_step2(bulk_folder_path,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully,g3):
-    import streamlit as st
     ################################################# Step 2   ##########################
     print('\n\n\n')
     print('*********************************************************************************************************************************************************')
@@ -934,24 +901,25 @@ def run_step2(bulk_folder_path,output_from_DLP_HTML_csv_file_loaded_in_DLP_suces
     print(output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully)
     print(g3)
     print('\n\n\n')
-    
         
     Step2_delta_html_vs_bulk(bulk_folder_path,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully,g3)
 
 
 
 ########################################### End of step 2 ##########################
-def callback(version_no,Candidate_DLP_files_folder,Production_DLP_files_folder,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully):
-   
-    import streamlit as st
-    st.write('started processing ==========')
+    
+##run_step1(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3a)
 
-    st.markdown("<span style='color:red'>Update/upgrade</span>",
-                 unsafe_allow_html=True)
-
-
-    run_step1(Candidate_DLP_files_folder,Production_DLP_files_folder,g3,g4,g5,g3a)
-    run_step2(bulk_folder_path,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully,g3)
+## pull directory info for Step2
+print('Instructions:')
+print('put all files in these directories manually')
+print('\n\n')
+print('bulk_folder_path --- ',bulk_folder_path)
+print('output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully --- ',output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully)
+print('g3 --- ',g3)
+print('\n\n')    
+##    
+run_step2(bulk_folder_path,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully,g3)
 
 
 
@@ -960,50 +928,6 @@ def callback(version_no,Candidate_DLP_files_folder,Production_DLP_files_folder,o
 ##remove_3_files(g3)
 
 
-###################################################################
-import streamlit as st
-#####################################################################################################################
-#### input files
-##version_no = st.text_input('Enter DLP version no: ')
-##version_no=2.8
-
-
-#####################################################################################################################
-
-###LSA4E  # for 1st def
-Candidate_DLP_files_folder =r'C:\Users\aa300j\Downloads\PEP\Connect_it_files\bingo_3332\Cand'
-Production_DLP_files_folder=r'C:\Users\aa300j\Downloads\PEP\Connect_it_files\bingo_3332\Prod'
-
-##Candidate_DLP_files_folder=st.text_input('Candidate folder (with 008) ')
-##Production_DLP_files_folder=st.text_input('Production folder (with 008) ')
-
-
-output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully=str(r'C:\Users\aa300j\Desktop\MPL1a_33333.csv')
-                                                            ## Do not change these
-
-##text_input = st.text_area("Enter a text", key="input_text", on_change=callback,args=(text_input,Candidate_DLP_files_folder,Production_DLP_files_folder,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully))
-
-import os
-import depend_DLP_import_script
-import streamlit as st
-
-print('Candidate folder ',Candidate_DLP_files_folder,' # of files in ',len(os.listdir(Candidate_DLP_files_folder)))
-print('Production folder ',Production_DLP_files_folder,' # of files in ',len(os.listdir(Candidate_DLP_files_folder)))
-print('\n\n')
-
-
-## Do not change these
-g3=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4'      ## Do not change these
-g3b=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4\bulk' 
-# Candidate
-g4=r'C:\Users\aa300j\Downloads\Production_DLP_files_x5'     ## Do not change these 
-# Production
-bulk_folder_path=r'C:\Users\aa300j\Downloads\Candidate_DLP_files_x4\bulk'   ## Do not change these
-#### output files
-g5='p'
-##g5=r'C:\Users\aa300j\Downloads\Delta_Cand_vs_Product_[to_go_to_DLP_after_bulk_change]_x6'   # Delta DLPs to be uploaded after running bulk upload.
-
-g3a=''
 
 
 ##print('\n')
@@ -1013,36 +937,9 @@ g3a=''
 #change_filenames_for_bulk_import(version_no,g3)
 
 
-##st.text_input(on_change=callback(string,Candidate_DLP_files_folder,Production_DLP_files_folder,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully), key='text_key')
-##
-##
-##
-
-with st.form(key="form1",clear_on_submit=True):
-    
-    version_no = st.text_input(label="DLP_Version_no")
-##    output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully=st.text_input(label='MPLA.csv')
-    
-##    submit=st.form_submit_button_button(label='submit')
-    submit=st.form_submit_button()
-    st.write(version_no)
-
-    if "load_state" not in st.session_state:
-         st.session_state.load_state = True
-    
-    if submit:
-
-        callback(version_no,Candidate_DLP_files_folder,Production_DLP_files_folder,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully)
 
 
-##title = st.text_input("label goes here")
-##version_no=title
-##
-##if title:
-####    df = pd.read_csv(path)
-####    st.experimental_rerun()
-##    
-##    callback(float(version_no),Candidate_DLP_files_folder,Production_DLP_files_folder,output_from_DLP_HTML_csv_file_loaded_in_DLP_sucessfully)
-##else:
-##    if not title:
-##        st.warning("Please fill out so required fields")
+
+
+
+
